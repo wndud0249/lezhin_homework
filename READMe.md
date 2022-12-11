@@ -28,6 +28,7 @@ nodemon server.js
 cd front_end
 npm i
 npm run start
+브라우저 header nav 중 로맨스 메뉴 클릭
 ```
 
 ## 설치된 라이브러리/프레임워크 설명
