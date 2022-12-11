@@ -67,15 +67,35 @@ const Ranking = ({ target }: RankingProps) => {
 
   // if page or target changed, refetch comics data
   useEffect(() => {
-    console.log(target);
     comicsRefetch();
   }, [page, target]);
 
   // if comicsData changed with filter
   useEffect(() => {
     if (!comicsData) return;
-    // 완결/연재 필터 있음 && 첫페이지 아님 && 무료필터 있음
-    if (contentStateFilter && page !== 1 && freedEpisodeFilter) {
+
+    // completed/scheduled filter exist && first page && free filter true
+    if (contentStateFilter && page === 1 && freedEpisodeFilter) {
+      setComics(
+        comicsData.data.filter(
+          (comic) => comic.contentsState === contentStateFilter && comic.freedEpisodeSize > 2
+        )
+      );
+    }
+    // completed/scheduled filter exist && first page && free filter false
+    else if (contentStateFilter && page === 1 && !freedEpisodeFilter) {
+      setComics(comicsData.data.filter((comic) => comic.contentsState === contentStateFilter));
+    }
+    // completed/scheduled filter Not exist && first page && free filter true
+    else if (!contentStateFilter && page === 1 && freedEpisodeFilter) {
+      setComics(comicsData.data.filter((comic) => comic.freedEpisodeSize > 2));
+    }
+    // completed/scheduled filter Not exist && first page && free filter false
+    else if (!contentStateFilter && page === 1 && !freedEpisodeFilter) {
+      setComics(comicsData.data);
+    }
+    // completed/scheduled filter exist && Not first page && free filter true
+    else if (contentStateFilter && page !== 1 && freedEpisodeFilter) {
       setComics(
         comics.concat(
           comicsData.data
@@ -83,34 +103,19 @@ const Ranking = ({ target }: RankingProps) => {
             .filter((comic) => comic.freedEpisodeSize > 2)
         )
       );
-      // 완결/연재 필터 있음 && 첫페이지 아님 && 무료필터 없음
-    } else if (contentStateFilter && page !== 1 && !freedEpisodeFilter) {
+    }
+    // completed/scheduled filter exist && Not first page && free filter false
+    else if (contentStateFilter && page !== 1 && !freedEpisodeFilter) {
       setComics(
         comics.concat(comicsData.data.filter((comic) => comic.contentsState === contentStateFilter))
       );
-      // 완결/연재 필터 있음 && 첫페이지 && 무료필터 있음
-    } else if (contentStateFilter && page === 1 && freedEpisodeFilter) {
-      setComics(
-        comicsData.data.filter(
-          (comic) => comic.contentsState === contentStateFilter && comic.freedEpisodeSize > 2
-        )
-      );
-      //  완결/연재 필터 있음 && 첫페이지 && 무료필터 없음
-    } else if (contentStateFilter && page === 1 && !freedEpisodeFilter) {
-      setComics(comicsData.data.filter((comic) => comic.contentsState === contentStateFilter));
-      // 완결/연재 필터 없음 && 첫페이지 && 무료필터 있음
-    } else if (!contentStateFilter && page === 1 && freedEpisodeFilter) {
-      setComics(comicsData.data.filter((comic) => comic.freedEpisodeSize > 2));
-      // 완결/연재 필터 없음 && 첫페이지 && 무료필터 없음
-    } else if (!contentStateFilter && page === 1 && !freedEpisodeFilter) {
-      console.log('여기아님?');
-      setComics(comicsData.data);
     }
-    // 완결/연재 필터 없음 && 첫페이지 아님 && 무료필터 있음
+    // completed/scheduled filter Not exist && Not first page && free filter true
     else if (!contentStateFilter && page !== 1 && freedEpisodeFilter) {
       setComics(comics.filter((comic) => comic.freedEpisodeSize > 2).concat(comicsData.data));
-      // 완결/연재 필터 없음 && 첫페이지 아님 && 무료필터 없음
-    } else {
+    }
+    // completed/scheduled filter Not exist && Not first page && free filter false
+    else {
       setComics(comics.concat(comicsData.data));
     }
   }, [comicsData]);
@@ -234,15 +239,17 @@ const Ranking = ({ target }: RankingProps) => {
                       {title}
                     </h3>
                     <h4>
-                      {artists
-                        .filter(
-                          (artist) =>
-                            artist.role === 'writer' ||
-                            artist.role === 'painter' ||
-                            artist.role === 'scripter'
-                        )
-                        .map((artist) => artist.name)
-                        .join(', ')}
+                      {artists &&
+                        artists.length > 0 &&
+                        artists
+                          .filter(
+                            (artist) =>
+                              artist.role === 'writer' ||
+                              artist.role === 'painter' ||
+                              artist.role === 'scripter'
+                          )
+                          .map((artist) => artist.name)
+                          .join(', ')}
                     </h4>
                     <div>{freedEpisodeSize > 0 ? `${freedEpisodeSize}화 무료` : ''}</div>
                     <div>
