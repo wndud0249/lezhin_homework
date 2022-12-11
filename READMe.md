@@ -110,7 +110,18 @@ npm run start
   - <img src="./images_for_readme/title.png" width="230" height="330"  alt="intersection observer">
 
 - accessibility 적용
+
   - <img src="./images_for_readme/a11y1.png" width="330"  alt="intersection observer">
     <img src="./images_for_readme/a11y2.png" width="330"  alt="intersection observer">
     <img src="./images_for_readme/a11y3.png" width="330"  alt="intersection observer">
     <img src="./images_for_readme/a11y4.png" width="330"  alt="intersection observer">
+
+- Anti-Aliasing for window os
+
+  - 컨텐츠 제목, 작가이름, 무료회차, 완결/연재 여부에 anti-aliasing 을 적용하였습니다.
+
+- className BEM rule 적용
+
+## 오류 보고
+
+- page json 파일에 순위 20번째의 정보가 빠져있습니다. 해당사항에 대해 따로 언급이 없어 처리하지 않았습니다.
