@@ -70,9 +70,9 @@ npm run start
 - Desktop 환경에서는 유저분들의 시선을 사로잡기 좋을것 같아 썸네일을 크게 적용하였습니다.
 - Mobile 환경에서는 Desktop 환경에 비해 화면이 작아 썸네일이 너무 크면 뷰포트에 노출되는 컨텐츠 수가 적어서 이미지를 작게 적용하였습니다.
 
-<img src="./images_for_readme/desktop_wide.png" width="330" height="330" alt="넓은 화면">
-<img src="./images_for_readme/desktop_narrow.png" width="330" height="330" alt="좁은 화면">
-<img src="./images_for_readme/mobile.png" width="330" height="330" alt="모바일">
+<img src="./images_for_readme/desktop_wide.PNG" width="330" height="330" alt="넓은 화면">
+<img src="./images_for_readme/desktop_narrow.PNG" width="330" height="330" alt="좁은 화면">
+<img src="./images_for_readme/mobile.PNG" width="330" height="330" alt="모바일">
 
 - 컴포넌트이므로 레진의 현재 사이트와 이질감이 대체로 들지 않도록 구성하였습니다.
 
