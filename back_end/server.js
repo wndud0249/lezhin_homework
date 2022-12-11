@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
+const cors = require('cors');
+
+app.use(cors());
 
 app.listen(8080, function () {
   console.log('listening on 8080');

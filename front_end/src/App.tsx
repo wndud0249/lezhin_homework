@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router';
+
+import Header from './components/Header';
+import NotFound from './components/NotFound';
+import Ranking from './components/Ranking';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Routes>
+        <Route path="/scheduled" element={<Ranking target="scheduled" />}></Route>
+        <Route path="/romance" element={<Ranking target="romance" />}></Route>
+        <Route path="/boys" element={<Ranking target="boys" />}></Route>
+        <Route path="/drama" element={<Ranking target="drama" />}></Route>
+        <Route path="/bl" element={<Ranking target="bl" />}></Route>
+        <Route path="/nsfw" element={<Ranking target="nsfw" />}></Route>
+        <Route path="/free" element={<Ranking target="free" />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
     </div>
   );
 }

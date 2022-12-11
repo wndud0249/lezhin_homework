@@ -1,0 +1,28 @@
+@import './variables.scss';
+/* error */
+main.error {
+  max-width: $content_size;
+  margin: 60px auto 30px;
+  .error__title {
+    width: 100%;
+    font-weight: 900;
+    margin: 20px auto;
+    text-align: center;
+  }
+  .error__code {
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .error__title {
+    font-size: 20px;
+  }
+  .error__code {
+    img {
+      width: 300px;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@import './variables.scss';
+
+/* header */
+header {
+  display: flex;
+  max-width: $content_size;
+  margin: 24px auto;
+  padding: 0 16px;
+  align-items: center;
+  .gnb__logo {
+    width: 64px;
+    min-width: 64px;
+    height: 64px;
+    background: $main_red url('//ccdn.lezhin.com/files/assets/img/jaymee.svg') no-repeat 50%;
+  }
+  nav.gnb {
+    width: 100%;
+
+    .gnb__list {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      .gnb__item {
+        a {
+          padding: 5px;
+          text-decoration: none;
+          color: black;
+          &:hover {
+            border-bottom: 2px solid black;
+            cursor: pointer;
+          }
+          &.on {
+            border-bottom: 2px solid black;
+          }
+        }
+        sup {
+          display: inline-block;
+          color: transparent;
+          vertical-align: text-top;
+          width: 12px;
+          height: 6px;
+          overflow: hidden;
+          background-image: url('//ccdn.lezhin.com/files/assets/img/gnb-icon-adult-ko.png');
+          background-size: contain;
+        }
+      }
+    }
+  }
+}
