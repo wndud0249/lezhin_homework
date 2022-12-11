@@ -1,114 +1,115 @@
-# Lezhin front-end homework
+# Lezhin Front-end Homework
 
 ## 개요
 
-로맨스 장르 작품 랭킹 리스트 컴포넌트를 개발합니다.
+로맨스 장르 작품 랭킹 리스트 컴포넌트 과제를 제출합니다.
 
-## 요구사항
+- 폴더는 back_end, front_end 폴더로 구분되어 있습니다.
+- back_end 폴더에는 api 요청을 주고받기 위한 간단한 mock server 가 들어있습니다.
+- front_end 폴더에는 제가 제출할 과제가 들어있습니다.
 
-- Desktop, Mobile 모던 브라우저(Chrome, Safari, Firefox) 환경만 고려해주시면 됩니다.
-- 로컬 환경에서 웹서버를 통해 작업물을 확인할 수 있도록 개발 환경을 구성, 확인 방법을 README에 작성해 주세요.
-- vanilla 또는 react 중 선택해서 개발해 주세요.
-- 컴포넌트 구조를 통해 재사용성을 고려하여 개발해 주세요.
-- 개발환경에 라이브러리나 프레임워크를 적용시 적용한 이유를 README 파일에 작성해 주세요.
-- 아래 컴포넌트 스펙사항을 구현해 주세요.
+## 확인 방법
 
-## 화면 샘플
+back_end 웹 서버와 front_end 웹 서버를 각각 실행해 주세요.
+back_end 는 8080 포트, front_end 는 3000 포트에서 실행 되도록 되어있습니다.
 
-<img src="./view_sample.png" width="430" alt="화면 샘플">
+`1. back_end 라이브러리 설치 & 웹서버 구동`
 
-- 위 이미지는 예시 화면입니다. 스타일을 그대로 적용할 필요는 없이 구현스펙을 알아볼 수 있도록 자유롭게 스타일 및 레이아웃을 적용해 주세요.
+```
+cd back_end
+npm i
+nodemon server.js
+```
 
-## 구현 스펙
+`2. front_end 라이브러리 설치 & 웹서버 구동`
+
+```
+(터미널이 현재 백엔드 폴더에 있다면) cd ..
+cd front_end
+npm i
+npm run start
+```
+
+## 설치된 라이브러리/프레임워크 설명
+
+### - `react`
+
+- vanilla / react 중 react 를 선택하여 개발하였습니다.
+
+### - `redux / redux-toolkit`
+
+- 선택구현 사항의 redux베이스의 상태관리 환경 구성을 위해 설치하였습니다.
+- 로맨스 장르 외에 다른 장르에서도 이미 적용된 필터를 사용하기 위해 필터 상태관리에 이용하였습니다.
+
+### - `react-router`
+
+- 로맨스 장르 외에 다른 장르도 개발될 것을 염두에 두어 설치 하였습니다.
+
+### - `axios`
+
+- return 을 promise 객체로 주는등 http 통신의 response 를 다루기 쉬워 적용하였습니다.
+
+### - `react-query`
+
+- 순위 정보가 있어서 캐싱을 효율적으로 관리해주고 오래된 데이터를 자동으로 업데이트 해주는 react-query 를 비동기 통신 관리 라이브러리로써 사용하였습니다.
+
+### - `sass`
+
+- nesting, 변수 등의 기능을 이용하기 위해 사용하였습니다.
+
+### - `typescript`
+
+- 정적 타이핑으로 인한 생산성 향상을 위해 적용하였습니다.
+
+## 화면 설명
+
+- Desktop/Mobile 환경을 고려하기 위해 768px 이하는 모바일, 769px 이상은 데스크탑으로 고려하여 제작하였습니다.
+- Desktop 환경에서 주요 요소를 flex 처리하여 반응형으로 제작하였습니다.
+
+- Desktop 환경에서는 유저분들의 시선을 사로잡기 좋을것 같아 썸네일을 크게 적용하였습니다.
+- Mobile 환경에서는 Desktop 환경에 비해 화면이 작아 썸네일이 너무 크면 뷰포트에 노출되는 컨텐츠 수가 적어서 이미지를 작게 적용하였습니다.
+
+<img src="./images_for_readme/desktop_wide.png" width="330" height="330" alt="넓은 화면">
+<img src="./images_for_readme/desktop_narrow.png" width="330" height="330" alt="좁은 화면">
+<img src="./images_for_readme/mobile.png" width="330" height="330" alt="모바일">
+
+- 컴포넌트이므로 레진의 현재 사이트와 이질감이 대체로 들지 않도록 구성하였습니다.
+
+## 구현 스펙 설명
 
 - 재사용성 등을 고려해서 로맨스 장르 외 다른 장르에서 재사용 가능하도록 구조를 설계해 주세요.
-- 현재 뷰가 스크롤 하단에 도달 시 다음 리스트를 불러오는 형태의 무한 스크롤 기능을 구현해 주세요.
-- 리스트 아이템 노출 정보를 노출해 주세요. 각 설명 상의 필드네임은 Interface를 확인해 주세요.
-  - 작품 썸네일
-    - `thumbnailSrc` 필드 값으로 썸네일을 노출해 주세요.
-  - 작품 타이틀
-    - `title` 필드 값으로 작품 제목을 노출해 주세요.
-  - 작가명
-    - `artists` 배열 아이템 `role`이 `writer`, `painter`, `scripter`인 경우 `name` 필드 값을 사용하여 해당 작가명들을 노출해 주세요.
-  - 랭킹
-    - 현재 랭킹(`currentRank`)과 이전 랭킹(`previousRank`)을 비교하여 현재 순위, 랭킹 상승, 하락, 변동없음을 표현해 주세요.
-    - 현재 순위 상태는 각 상태가 다르다는 것을 확실하게 알아볼 수 있는 스타일을 적용하여 자유롭게 개발해 주세요.
-  - 무료 회차
-    - `freedEpisodeSize` 필드 값으로 무료 회차 수를 노출해 주세요.
-  - 완결/연재 여부
-    - `contentState` 필드 값을 이용하여 완결(`completed`)/연재(`scheduled`) 여부를 노출해 주세요.
-    - 연재 중이라면 `요일 + 연재`의 형태로 노출해 주세요 (ex: 매주 화요일 연재)
-- 필터링 영역
-  - `연재중`, `완결`, `무료회차 3개 이상` 해당 3개 조건의 필터 옵션을 개발해 주세요.
-  - 필터링은 중복 설정이 가능합니다.
-  - 연재중, 완결 필터 옵션의 경우 모순되는 케이스이므로 각 옵션 설정 시 반대 케이스의 옵션은 off 되어야 합니다.
 
-## 선택 구현 스펙
+  - Ranking 컴포넌트의 target props 를 이용해 다른 장르에서도 해당 컴포넌트를 이용할 수 있도록 개발하였습니다.
+
+  - <img src="./images_for_readme/target_ex1.png" width="330"  alt="Ranking component"><img src="./images_for_readme/target_ex2.png" width="330"  alt="usequery">
+
+- 현재 뷰가 스크롤 하단에 도달 시 다음 리스트를 불러오는 형태의 무한 스크롤 기능을 구현해 주세요.
+
+  - IntersectionObserver api 와 useRef hook 을 이용하여 컨텐츠 마지막 돔을 캐치하여 무한 스크롤 기능을 구현 하였습니다.
+  - <img src="./images_for_readme/intersection.png" width="330"  alt="intersection observer"><img src="./images_for_readme/target_ex2.png" width="330"  alt="useRef">
+
+- 리스트 아이템 노출 정보를 노출해 주세요. 각 설명 상의 필드네임은 Interface를 확인해 주세요.
+
+  - comics array 를 map 함수로 각각 호출한 뒤 구조분해 할당하여 썸네일, 타이틀, 작가명, 랭킹, 무료회차, 완결/연재 여부를 표시하였습니다.
 
 - typescript 사용
+
+  - 정적타입핑으로 개발생산성을 올리기 위해 적용하였습니다.
+
 - redux베이스의 상태관리 환경 구성
-- 필터링 조건을 해당 컴포넌트에서 추가적으로 사용할 수 있도록 옵션으로 처리
 
-## API
+  - 연재중 / 완결 / 무료회차 3개 이상의 필터는 다른 장르에서도 쉽게 사용 할 수 있도록 redux-toolkit 을 세팅하여 상태를 공유하도록 하였습니다.
 
-- 각 아이템의 순서는 랭킹순으로 정렬되어 내려옵니다.
-- 요청 URL
-  - `GET /api/comics/romance?page=1`
-  - page는 1~5까지 있습니다.
-  - mock 데이터는 첨부파일을 확인해 주세요
+- 필터링 조건을 해당컴포넌트에서 추가적으로 사용할 수 있도록 옵션으로 처리
 
-## API Interface
+  - 필터링을 사용하거나 초기화하여 필터링을 해제할 수 있도록 개발하였습니다.
 
-```
-// 연재 요일
-type Period = "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT" | "SUN";
-// 작가 롤
-type ArtistRole =
-  | "writer"
-  | "painter"
-  | "scripter"
-  | "original"
-  | "publisher"
-  | "label";
+- ui 통일성을 위해 긴 제목의 경우 ellipsis 를 적용하고 title을 제공하였습니다.
 
-interface Artist {
-  name: string; // 작가 필명
-  role: ArtistRole; // 작가 롤
-  id: string // 작가 id
-}
+  - <img src="./images_for_readme/title.png" width="230" height="330"  alt="intersection observer">
 
-interface ComicRankItem {
-  id: number; // 작품 id
-  alias: string; // 작품 별칭
-  title: string; // 작품 타이틀
-  artists: Artist[]; // 작가 정보
-  schedule: {
-    periods: Period[]; // 연재 요일
-  };
-  genres: string[]; // 작품 장르
-  freedEpisodeSize: number; // 무료회차 수
-  contentsState: "scheduled" | "completed"; // 연재, 완결 값
-  currentRank: number; // 현재 랭킹
-  previousRank: number; // 이전 랭킹
-  updatedAt: number; // 업데이트 일자
-  print: boolean; // 단행본 여부
-  thumbnailSrc: string; // 작품 썸네일 url
-}
-
-interface ComicRankApiSuccessResponse {
-  hasNext: boolean; // 다음 page 존재 여부
-  count: number; // 아이템 전체 카운트
-  data: ComicRankItem[]; // 아이템 리스트
-}
-
-interface ComicRankApiFailResponse {
-  error: string // 에러 메세지
-}
-```
-
-## 과제 제출 방법
-
-아래 방법중 한가지를 선택해서 제출해 주세요.
-
-- 작업물을 zip 포맷으로 압축하여 메일로 회신해 주세요.
-- 깃허브 저장소에 업로드 후 url을 메일로 회신해 주세요.
+- accessibility 적용
+  - <img src="./images_for_readme/a11y1.png" width="330"  alt="intersection observer">
+    <img src="./images_for_readme/a11y2.png" width="330"  alt="intersection observer">
+    <img src="./images_for_readme/a11y3.png" width="330"  alt="intersection observer">
+    <img src="./images_for_readme/a11y4.png" width="330"  alt="intersection observer">

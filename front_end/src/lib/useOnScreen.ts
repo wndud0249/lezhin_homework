@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 
-export default function useOnScreen(ref: any, rootMargin = '0px') {
+export default function useOnScreen(ref: RefObject<HTMLDivElement>, rootMargin = '0px') {
   const [isIntersecting, setIntersecting] = useState(false);
 
   useEffect(() => {

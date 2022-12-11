@@ -164,6 +164,7 @@ const Ranking = ({ target }: RankingProps) => {
           className={contentStateFilter === 'scheduled' ? 'filter__item on' : 'filter__item'}
           onClick={onClickContentStateFilter}
           data-content-state="scheduled"
+          title="연재 중 필터"
         >
           연재 중
         </div>
@@ -171,12 +172,14 @@ const Ranking = ({ target }: RankingProps) => {
           className={contentStateFilter === 'completed' ? 'filter__item on' : 'filter__item'}
           onClick={onClickContentStateFilter}
           data-content-state="completed"
+          title="완결 필터"
         >
           완결
         </div>
         <div
           className={freedEpisodeFilter ? 'filter__item on' : 'filter__item'}
           onClick={onClickFreedEpisodeFilter}
+          title="무료회차 3개 이상 필터"
         >
           무료회차 3개 이상
         </div>
@@ -185,10 +188,11 @@ const Ranking = ({ target }: RankingProps) => {
           onClick={onClickResetFilter}
           onMouseOver={onMouseOverResetFilter}
           onMouseLeave={onMouseLeaveResetFilter}
+          title="필터 초기화"
         >
           <img
             src={resetFilterHover ? refreshWhite : refreshBlack}
-            alt="refresh"
+            alt="refresh icon"
             width={15}
             className="refresh__icon"
           />
